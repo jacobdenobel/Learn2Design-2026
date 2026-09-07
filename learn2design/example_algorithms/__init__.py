@@ -5,3 +5,4 @@ from learn2design.example_algorithms.scipy_bfgs import BFGS
 from learn2design.example_algorithms.lbfgs_gd import LBFGSGD
 from learn2design.example_algorithms.random_search import RandomSearch
 from learn2design.example_algorithms.pycma_cmaes import PyCMACMAES
+from learn2design.example_algorithms.solver import Solver

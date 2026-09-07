@@ -8,6 +8,7 @@ from pathlib import Path
 
 import h5py
 import jax.numpy as jnp
+from loguru import logger
 
 try:
     from dfbench import Objective
@@ -47,21 +48,22 @@ def main() -> int:
         raise ValueError(
             f"Saved params have length {params.shape[0]}, but this UIFOProblem expects {expected_params}."
         )
-
+    logger.info("warming up")
     objective.warmup_value()
     objective.start_logging()
+    logger.info("computing loss")
     evaluated_loss = float(objective.value(jnp.asarray(params)))
     saved_loss = metadata["loss"]
-
-    print(f"entry_index: {entry_index}")
-    print(f"unique_hash: {metadata['unique_hash']}")
-    print(f"topology_string: {metadata['topology_string']}")
-    print(f"size: {metadata['size']}")
-    print(f"n_frequencies: {n_frequencies}")
-    print(f"n_params: {params.shape[0]}")
-    print(f"saved_loss: {saved_loss:.12g}")
-    print(f"evaluated_loss: {evaluated_loss:.12g}")
-    print(f"absolute_difference: {abs(evaluated_loss - saved_loss):.12g}")
+    logger.info("done")
+    logger.info(f"entry_index: {entry_index}")
+    logger.info(f"unique_hash: {metadata['unique_hash']}")
+    logger.info(f"topology_string: {metadata['topology_string']}")
+    logger.info(f"size: {metadata['size']}")
+    logger.info(f"n_frequencies: {n_frequencies}")
+    logger.info(f"n_params: {params.shape[0]}")
+    logger.info(f"saved_loss: {saved_loss:.12g}")
+    logger.info(f"evaluated_loss: {evaluated_loss:.12g}")
+    logger.info(f"absolute_difference: {abs(evaluated_loss - saved_loss):.12g}")
     return 0
 
 
