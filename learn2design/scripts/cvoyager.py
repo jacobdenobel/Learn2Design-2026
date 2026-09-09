@@ -3,7 +3,7 @@
 from dfbench.problems import ConstrainedVoyagerProblem
 from dfbench import Objective
 
-from learn2design.example_algorithms import Solver
+from learn2design.example_algorithms import ComponentPolicyAdam 
 
 SEED = 42
 
@@ -19,7 +19,7 @@ obj = Objective(
     display_mode="live",  # Use "log" for a non-interactive terminal
 )
 
-optimizer = Solver()
+optimizer = ComponentPolicyAdam()
 
 
 # Run optimization
